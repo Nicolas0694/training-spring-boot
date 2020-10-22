@@ -26,6 +26,7 @@ public class ProductController {
 
     @Autowired
     private ProductDao productDao;
+    private Product product;
 
 
     //Récupérer la liste des produits
@@ -61,6 +62,11 @@ public class ProductController {
         return produit;
     }
 
+
+    public int calculerMargeProduit() {
+
+        return (product.getPrixAchat()-product.getPrix());
+    }
 
 
 
