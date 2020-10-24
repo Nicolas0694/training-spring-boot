@@ -24,6 +24,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     * Selon la doc suivante : https://www.baeldung.com/spring-data-sorting.
     */
 
-    List<Product> findAllOrderByNomAsc();
+    List<Product> findAllByOrderByNomAsc();
 
 }

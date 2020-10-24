@@ -83,10 +83,11 @@ public class ProductController {
          return listeMarges;
     }
 
+        //Appel de la méthode de ProductDao suivant la convention de nommage
     @ApiOperation(value = "Tri par ordre alphabétique et affichage")
     @GetMapping(value = "/TriProduits")
     public List<Product>  trierProduits() {
-        return productDao.findAllOrderByNomAsc();
+        return productDao.findAllByOrderByNomAsc();
     }
 
     //ajouter un produit
