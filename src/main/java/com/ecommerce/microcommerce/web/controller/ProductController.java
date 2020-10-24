@@ -64,6 +64,13 @@ public class ProductController {
         return produit;
     }
 
+    /*  Déclaration de la value de l'ApiOperation
+    * Déclaration du type de requete (GET)
+    * J'instancie une HashMap dans laquelle j'associe un objet Produit à un entier correspondant à la marge = Prix d'achat - prix de vente
+    * En parcourant la lite des produits grace a findAll() de ProductDAO, j'affecte à chaque produit la différence entre son prix d'Achat et son prix de vente
+    * Retourne enfin la hashMap remplie ce qui constitue la réponse à la requete sur l'URI "AdminProduits"
+    * */
+
     @ApiOperation(value = "Affichage de la marge pour chaque produits")
     @RequestMapping(value = "/AdminProduits", method = RequestMethod.GET)
     public Map <Product,Integer> calculerMargeProduit() {
@@ -76,7 +83,11 @@ public class ProductController {
          return listeMarges;
     }
 
-
+    @ApiOperation(value = "Tri par ordre alphabétique et affichage")
+    @GetMapping(value = "/TriProduits")
+    public List<Product>  trierProduits() {
+        return productDao.findAllOrderByNomAsc();
+    }
 
     //ajouter un produit
     @PostMapping(value = "/Produits")
