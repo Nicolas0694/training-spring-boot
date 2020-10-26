@@ -1,6 +1,6 @@
 package com.ecommerce.microcommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
+import io.swagger.annotations.Api;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 
+
+@Api(value=" Classe permettant d'instancier un nouveau produit et de définir ses caractéristiques")
 @Entity
 //@JsonFilter("monFiltreDynamique")
 public class Product {
