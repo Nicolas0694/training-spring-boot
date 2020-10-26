@@ -23,7 +23,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     /* La convention de nommage ici implique l'automatisation des requetes lors de l'appel de cette méthode
     * Selon la doc suivante : https://www.baeldung.com/spring-data-sorting.
     */
-
     List<Product> findAllByOrderByNomAsc();
 
 }

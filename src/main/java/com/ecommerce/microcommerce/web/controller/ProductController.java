@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 
-@Api( description="API pour es opérations CRUD sur les produits.")
+@Api( description="API pour les opérations CRUD sur les produits.")
 
 @RestController
 public class ProductController {
@@ -33,7 +33,7 @@ public class ProductController {
 
 
     //Récupérer la liste des produits
-
+    @ApiOperation(value="Récupération de l'ensemble des produits ")
     @RequestMapping(value = "/Produits", method = RequestMethod.GET)
 
     public MappingJacksonValue listeProduits() {
@@ -72,7 +72,7 @@ public class ProductController {
     * Retourne enfin la hashMap remplie ce qui constitue la réponse à la requete sur l'URI "AdminProduits"
     * */
 
-    @ApiOperation(value = "Affichage de la marge pour chaque produits")
+    @ApiOperation(value = "Affichage de la marge pour chaque produit")
     @RequestMapping(value = "/AdminProduits", method = RequestMethod.GET)
     public Map <Product,Integer> calculerMargeProduit() {
         Map <Product,Integer> listeMarges = new HashMap<Product,Integer>();
@@ -92,6 +92,7 @@ public class ProductController {
     }
 
     //ajouter un produit
+    @ApiOperation(value ="Ajout d'un nouveau produit en prenant en compte le prix non nul ")
     @PostMapping(value = "/Produits")
 
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
@@ -113,12 +114,15 @@ public class ProductController {
         return ResponseEntity.created(location).build();
     }
 
+    @ApiOperation(value ="Supprimer un produit avec un certain id existant")
     @DeleteMapping (value = "/Produits/{id}")
     public void supprimerProduit(@PathVariable int id) {
 
         productDao.delete(id);
     }
 
+
+    @ApiOperation(value = "Mise à jour avec ajout d'un nouveau produit à la collection")
     @PutMapping (value = "/Produits")
     public void updateProduit(@RequestBody Product product) {
 
@@ -127,6 +131,7 @@ public class ProductController {
 
 
     //Pour les tests
+    @ApiOperation(value = "Affichage du prix d'un produit pour tester les requetes")
     @GetMapping(value = "test/produits/{prix}")
     public List<Product>  testeDeRequetes(@PathVariable int prix) {
 
